@@ -1,0 +1,21 @@
+from django.shortcuts import render
+import psycopg2
+from django.http import HttpResponse 
+try:
+   conn = psycopg2.connect("dbname = 'malicious_urls' user = 'postgres' host = 'localhost' password= 'password' ")
+except:
+   print "Unable to connect to the database" 
+# Create your views here.
+cur = conn.cursor()
+def crawl(request):
+   cur.execute("SELECT domain  FROM malicious_websites;")
+   malicious_urls = cur.fetchone()
+   i=0
+   total = HttpResponse("")
+   while(i<len(malicious_urls)):
+        y = malicious_urls[i]	
+    	html = "<html><body>%s</body></html>" %y
+        
+        i=i+1
+        
+   return total

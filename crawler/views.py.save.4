@@ -1,0 +1,62 @@
+from django.shortcuts import render
+import psycopg2,traceback
+from django.http import HttpResponse
+from django.shortcuts import render_to_response
+url =''
+"""
+try:
+   conn = psycopg2.connect("dbname = 'malicious_urls' user = 'postgres' host = 'localhost' password= 'password' ")
+   print "Hifdnvfdlj"
+except:
+   print "Unable to connect to the database" 
+# Create your views here.
+cur = conn.cursor()
+"""
+def crawl(request):
+	try:
+		try:
+			conn = psycopg2.connect("dbname = 'malicious_urls' user = 'postgres' host = 'localhost' password= 'password' ")
+			cur = conn.cursor()
+			print "Hifdnvfdlj"
+		except:
+			print "Unable to connect to the database" 
+# Create your views here.	
+		
+		cur.execute("SELECT * FROM malicious_urls")		
+		malicious_websites = cur.fetchall()		
+		malicious_urls = dict()
+		i=0
+		for item in malicious_websites:
+			malicious_urls.update({i:item})
+			i=i+1
+		print malicious_urls		  
+		return render(request,"index.html",{'urls' : malicious_websites})
+	except:
+		from django.db import connection
+		connection._rollback()
+		print "excedpt"
+		print(traceback.format_exc())
+		
+def entry(request):
+	if request.method =='POST':
+		try:
+			conn = psycopg2.connect("dbname = 'malicious_urls' user = 'postgres' host = 'localhost' password= 'password' ")
+			cur = conn.cursor()
+			print "Hifdnvfdlj"
+		except:
+			print "Unable to connect to the database" 
+		url = request.POST.get('textfield',None
+		html = ("<H1>url added:" + url + "</H1>")
+                site=str(url)
+		try:
+		   cur.execute("INSERT INTO malicious_urls (domain) VALUES (%s);",(site))
+                   print "$%%$$$$$$$$$$$$$$$$$$$$$$$$$$"
+		except:
+			print url
+			print(traceback.format_exc())
+			print("Unable to insert into the database")
+		return HttpResponse(html)
+	else:
+		return render(request,'form.html')
+	    
+
