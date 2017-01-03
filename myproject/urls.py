@@ -21,5 +21,6 @@ from crawler import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^crawler/',views.crawl,name ='urls'),
-    url(r'^entry$',views.entry,name='urls')
+    url(r'^entry$',views.entry,name='urls'),
+    url(r'^$',views.main,name='urls')
 ]

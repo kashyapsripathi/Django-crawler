@@ -57,3 +57,9 @@ def dbinsert(url):
        cur = conn.cursor()
        cur.execute(url)
        conn.commit()
+def main(request):
+       try:
+          conn = psycopg2.connect("dbname = 'malicious_urls' user = 'postgres' host = 'localhost' password='password' ")
+       except:
+          print "Unable to connect to the database"
+       return render(request,"main.html")
