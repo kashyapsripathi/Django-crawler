@@ -25,7 +25,7 @@ SECRET_KEY = 'a8ukc0=s7*_c_wc$p!95y4)8o16e)j&=)efo(owkwwbgy3sydn'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.128.37.137']
+ALLOWED_HOSTS = ['10.128.37.137','127.0.0.1','localhost']
 
 
 # Application definition
@@ -80,8 +80,8 @@ DATABASES = {
         'NAME':'malicious_urls' ,
         'USER' : 'postgres',
         'PASSWORD': 'password' ,
-        'HOST': 'localhost',
-        'PORT' : '',
+        'HOST': '10.128.37.137',
+        'PORT' : '5432',
     }
 }
 

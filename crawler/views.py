@@ -14,7 +14,9 @@ except:
 cur = conn.cursor()
 """
 def crawl(request):
-                conn = psycopg2.connect("dbname = 'malicious_urls' user = 'postgres' host = 'localhost' password = 'password' ")
+                # conn = psycopg2.connect("dbname = 'malicious_urls' user = 'postgres' host = '10.128.37.137' password = 'password' ")
+                conn = psycopg2.connect("dbname = 'malicious_urls' user = 'postgres' host = '10.128.37.137' password= 'password' ")
+                print conn
                 cur = conn.cursor() 
 # Create your views here.	
 		cur.execute("SELECT * FROM malicious_websites")		
@@ -50,7 +52,7 @@ def entry(request):
 	      
 def dbinsert(url):
        try:
-          conn = psycopg2.connect("dbname = 'malicious_urls' user = 'postgres' host = 'localhost' password= 'password' ")
+          conn = psycopg2.connect("dbname = 'malicious_urls' user = 'postgres' host = '10.128.37.137' password= 'password' ")
        except:
           print "Unable to connect to the database"
         
@@ -59,7 +61,7 @@ def dbinsert(url):
        conn.commit()
 def main(request):
        try:
-          conn = psycopg2.connect("dbname = 'malicious_urls' user = 'postgres' host = 'localhost' password='password' ")
+          conn = psycopg2.connect("dbname = 'malicious_urls' user = 'postgres' host = '10.128.37.137' password= 'password' ")
        except:
           print "Unable to connect to the database"
        return render(request,"main.html")
